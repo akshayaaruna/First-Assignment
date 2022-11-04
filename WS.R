@@ -1,0 +1,11 @@
+library(rvest)
+library(dplyr)
+link<-"https://www.forbes.com/lists/india-billionaires/?sh=2c77694b109b"
+web<-read_html(link)
+Name<-web %>% html_nodes(".name") %>% html_text()
+View(Name)
+Networth<- web %>% html_nodes(".worth") %>% html_text()
+View(Networth)
+Billionares<-data.frame(Name,Networth)
+View(Billionares)
+write.csv(Billionares,"Top Billionares.csv")
